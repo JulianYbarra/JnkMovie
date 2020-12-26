@@ -10,7 +10,7 @@ import com.junka.jnkmovie.core.loadTMDB
 import com.junka.jnkmovie.databinding.ViewItemMovieBinding
 import com.junka.jnkmovie.movie.model.Movie
 
-class MoviesAdapter() : ListAdapter<Movie, MoviesAdapter.ItemViewHolder>(DiffCallback()) {
+class MoviesAdapter : ListAdapter<Movie, MoviesAdapter.ItemViewHolder>(DiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.view_item_movie, parent, false)

@@ -5,9 +5,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.ConcatAdapter
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.junka.jnkmovie.core.observer
 import com.junka.jnkmovie.databinding.FragmentMovieBinding
 import com.junka.jnkmovie.main.base.BaseFragment
+import com.junka.jnkmovie.movie.adapter.GalleryAdapter
 import com.junka.jnkmovie.movie.adapter.MoviesAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -31,14 +34,15 @@ class MovieFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val movieAdapter = MoviesAdapter()
+        val moviePopularAdapter = GalleryAdapter("Popular")
 
         binding.moviesRecyclerView.apply {
-            adapter = movieAdapter
+            layoutManager = LinearLayoutManager(requireContext())
+            adapter = ConcatAdapter(moviePopularAdapter)
         }
 
         observer(viewModel.popularMovies) { movieList ->
-            movieAdapter.submitList(movieList)
+            moviePopularAdapter.data = movieList
         }
 
     }
