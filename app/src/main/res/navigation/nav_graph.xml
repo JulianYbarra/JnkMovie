@@ -10,4 +10,9 @@
         android:name="com.junka.jnkmovie.movie.MovieFragment"
         android:label="fragment_movie"
         tools:layout="@layout/fragment_movie" />
+    <fragment
+        android:id="@+id/navigation_movie_detail_fragment"
+        android:name="com.junka.jnkmovie.movie.ui.MovieDetailFragment"
+        android:label="fragment_movie_detail"
+        tools:layout="@layout/fragment_movie_detail" />
 </navigation>

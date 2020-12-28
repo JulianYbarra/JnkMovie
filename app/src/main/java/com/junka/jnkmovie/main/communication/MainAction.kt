@@ -1,5 +1,7 @@
 package com.junka.jnkmovie.main.communication
 
-sealed class MainAction {
+import com.junka.jnkmovie.movie.model.Movie
 
+sealed class MainAction {
+    class OnShowMovieDetail(val movie : Movie) : MainAction()
 }

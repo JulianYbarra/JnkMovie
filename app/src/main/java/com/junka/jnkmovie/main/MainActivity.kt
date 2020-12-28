@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import com.junka.jnkmovie.R
+import com.junka.jnkmovie.core.MOVIE
 import com.junka.jnkmovie.databinding.ActivityMainBinding
 import com.junka.jnkmovie.main.base.BaseActivity
 import com.junka.jnkmovie.main.communication.CommunicationCallback
@@ -34,6 +35,8 @@ class MainActivity : BaseActivity(), CommunicationCallback {
     }
 
     override fun onFragmentEvent(action: MainAction) {
-
+        when(action){
+            is MainAction.OnShowMovieDetail -> navController.navigate(R.id.navigation_movie_detail_fragment,Bundle().apply { putParcelable(MOVIE,action.movie) })
+        }
     }
 }

@@ -16,7 +16,7 @@ class GalleryAdapter(private val title: String) : RecyclerView.Adapter<GalleryAd
 
     class ViewHolder(private val binding: LayoutItemGalleryBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(title: String, movieList: List<Movie>) = with(binding) {
-            val moviesAdapter = MoviesAdapter()
+            val moviesAdapter = MoviesAdapter(){}
             sectionRecyclerView.apply {
                 layoutManager = LinearLayoutManager(root.context, LinearLayoutManager.HORIZONTAL, false)
                 adapter = moviesAdapter

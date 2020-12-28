@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".movie.ui.MovieDetailFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/backDropImage"
+            android:layout_width="match_parent"
+            android:layout_height="280dp"
+            android:alpha="0.8"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="parent"/>
+
+        <ImageView
+            android:id="@+id/arrowBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/grid_2"
+            android:src="@drawable/ic_arrow_back"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <TextView
+            android:id="@+id/titleTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/grid_2"
+            android:textAppearance="@style/TextAppearance.Jnk.Headline5"
+            app:layout_constraintTop_toTopOf="@id/backDropImage"
+            app:layout_constraintStart_toEndOf="@id/arrowBack"
+            app:layout_constraintEnd_toEndOf="@id/backDropImage"
+            tools:text="Title"/>
+
+        <ImageView
+            android:id="@+id/posterImage"
+            android:layout_width="wrap_content"
+            android:layout_height="160dp"
+            android:layout_marginStart="@dimen/grid_2"
+            app:layout_constraintStart_toStartOf="@id/backDropImage"
+            app:layout_constraintTop_toBottomOf="@id/backDropImage"
+            app:layout_constraintBottom_toBottomOf="@id/backDropImage"/>
+
+        <TextView
+            android:id="@+id/overviewTitleTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/grid_2"
+            android:layout_marginTop="@dimen/grid_2"
+            android:text="Overview"
+            android:textAppearance="@style/TextAppearance.Jnk.Overline"
+            app:layout_constraintTop_toBottomOf="@id/posterImage"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <TextView
+            android:id="@+id/overviewTextView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="@dimen/grid_3"
+            android:textAppearance="@style/TextAppearance.Jnk.Body2"
+            app:layout_constraintTop_toBottomOf="@id/overviewTitleTextView"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:text="@tools:sample/lorem/random"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

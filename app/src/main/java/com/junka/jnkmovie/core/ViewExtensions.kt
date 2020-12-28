@@ -10,9 +10,12 @@ var View.visible: Boolean
         visibility = if (value) View.VISIBLE else View.GONE
     }
 
-fun ImageView.loadTMDB(lastPath : String) {
+fun ImageView.loadTMDB(lastPath : String,size: String = PosterSize.ORIGINAL.value) {
+
+    val path = "$BASE_IMAGE_URL/$size"
+
     Glide
         .with(this)
-        .load( "$BASE_IMAGE_URL$lastPath")
+        .load( "$path$lastPath")
         .into(this)
 }
