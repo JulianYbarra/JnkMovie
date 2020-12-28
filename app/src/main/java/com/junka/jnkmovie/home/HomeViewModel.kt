@@ -1,4 +1,4 @@
-package com.junka.jnkmovie.movie
+package com.junka.jnkmovie.home
 
 import android.util.Log
 import androidx.hilt.lifecycle.ViewModelInject
@@ -13,8 +13,9 @@ import kotlinx.coroutines.flow.conflate
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class MovieViewModel @ViewModelInject constructor(
+class HomeViewModel @ViewModelInject constructor(
     private val movieController: MovieController) : ViewModel() {
+
 
     val popularMovies = movieController.getMoviePopular(API_KEY).asLiveData()
 

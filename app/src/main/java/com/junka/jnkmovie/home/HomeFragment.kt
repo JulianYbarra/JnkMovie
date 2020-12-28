@@ -1,4 +1,4 @@
-package com.junka.jnkmovie.movie
+package com.junka.jnkmovie.home
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,21 +6,19 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.ConcatAdapter
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.junka.jnkmovie.core.loadTMDB
 import com.junka.jnkmovie.core.observer
-import com.junka.jnkmovie.databinding.FragmentMovieBinding
+import com.junka.jnkmovie.databinding.FragmentHomeBinding
 import com.junka.jnkmovie.main.base.BaseFragment
 import com.junka.jnkmovie.movie.adapter.GalleryAdapter
-import com.junka.jnkmovie.movie.adapter.MoviesAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MovieFragment : BaseFragment() {
+class HomeFragment : BaseFragment() {
 
-    private val binding by lazy { FragmentMovieBinding.inflate(layoutInflater) }
-    private val viewModel by viewModels<MovieViewModel>()
+    private val binding by lazy { FragmentHomeBinding.inflate(layoutInflater) }
+    private val viewModel by viewModels<HomeViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,16 +34,22 @@ class MovieFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val moviePopularAdapter = MoviesAdapter()
+        val moviePopularAdapter = GalleryAdapter("Popular")
 
         binding.moviesRecyclerView.apply {
-            layoutManager = GridLayoutManager(requireContext(),3,LinearLayoutManager.VERTICAL,false)
+            layoutManager = LinearLayoutManager(requireContext())
             adapter = ConcatAdapter(moviePopularAdapter)
         }
 
         observer(viewModel.popularMovies) { movieList ->
-            moviePopularAdapter.submitList(movieList)
+            moviePopularAdapter.data = movieList
 
+            movieList.firstOrNull()?.let { movie ->
+                movie.backdropPath?.let {
+                    binding.lastMovieImage.loadTMDB(it)
+                }
+                binding.lastMovieTextView.text = movie.title
+            }
         }
 
     }
