@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.junka.jnkmovie.core.loadTMDB
 import com.junka.jnkmovie.core.observer
 import com.junka.jnkmovie.databinding.FragmentMovieBinding
 import com.junka.jnkmovie.main.base.BaseFragment
@@ -43,6 +44,13 @@ class MovieFragment : BaseFragment() {
 
         observer(viewModel.popularMovies) { movieList ->
             moviePopularAdapter.data = movieList
+
+            movieList.firstOrNull()?.let { movie ->
+                movie.backdropPath?.let {
+                    binding.lastMovieImage.loadTMDB(it)
+                }
+                binding.lastMovieTextView.text = movie.title
+            }
         }
 
     }
