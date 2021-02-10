@@ -10,12 +10,13 @@ import androidx.navigation.findNavController
 import com.junka.jnkmovie.core.MOVIE
 import com.junka.jnkmovie.core.loadTMDB
 import com.junka.jnkmovie.databinding.FragmentMovieDetailBinding
+import com.junka.jnkmovie.main.base.BaseFragment
 import com.junka.jnkmovie.movie.MovieViewModel
 import com.junka.jnkmovie.movie.model.Movie
 
-class MovieDetailFragment : Fragment() {
+class MovieDetailFragment : BaseFragment() {
 
-    private val binding by lazy { FragmentMovieDetailBinding.inflate(layoutInflater) }
+    private val binding : FragmentMovieDetailBinding  by lazy { FragmentMovieDetailBinding.inflate(layoutInflater) }
     private val viewModel by viewModels<MovieViewModel>()
 
     private val movieData : Movie? by lazy { arguments?.getParcelable(MOVIE) }
@@ -24,9 +25,7 @@ class MovieDetailFragment : Fragment() {
         super.onCreate(savedInstanceState)
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        return binding.root
-    }
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View  = binding.root
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -45,9 +44,11 @@ class MovieDetailFragment : Fragment() {
                 posterImage.loadTMDB(movie.posterPath)
                 titleTextView.text = movie.title
                 overviewTextView.text = movie.overview
+
+                textRating.text = "${movie.voteAverage} (${movie.voteCount})"
+                textReleased.text = movie.releaseDate
+                textLanguage.text = movie.originalLanguage
             }
         }
     }
-
-
 }

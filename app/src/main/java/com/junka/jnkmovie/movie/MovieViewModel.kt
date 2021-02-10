@@ -9,12 +9,16 @@ import com.junka.jnkmovie.core.API_KEY
 import com.junka.jnkmovie.movie.controller.MovieController
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.conflate
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class MovieViewModel @ViewModelInject constructor(
-    private val movieController: MovieController) : ViewModel() {
+    private val movieController: MovieController
+) : ViewModel() {
+
+    init {
+
+    }
 
     val popularMovies = movieController.getMoviePopular(API_KEY).asLiveData()
 

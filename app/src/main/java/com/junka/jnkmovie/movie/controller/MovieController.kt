@@ -10,5 +10,4 @@ class MovieController @Inject constructor(
 ) {
 
     fun getMoviePopular(apiKey: String): Flow<List<Movie>> = movieRepository.getMoviePopular(apiKey)
-
 }

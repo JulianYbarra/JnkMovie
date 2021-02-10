@@ -13,4 +13,8 @@ class MovieRepository @Inject constructor(
     fun getMoviePopular(apiKey: String): Flow<List<Movie>> = flow {
         emit(service.getMoviePopular(apiKey).results)
     }
+
+    companion object {
+        private const val PAGING_SIZE = 20
+    }
 }

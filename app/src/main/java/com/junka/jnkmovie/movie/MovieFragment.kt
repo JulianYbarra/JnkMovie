@@ -9,12 +9,10 @@ import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.junka.jnkmovie.R
-import com.junka.jnkmovie.core.loadTMDB
 import com.junka.jnkmovie.core.observer
 import com.junka.jnkmovie.databinding.FragmentMovieBinding
 import com.junka.jnkmovie.main.base.BaseFragment
 import com.junka.jnkmovie.main.communication.MainAction
-import com.junka.jnkmovie.movie.adapter.GalleryAdapter
 import com.junka.jnkmovie.movie.adapter.MoviesAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -49,6 +47,5 @@ class MovieFragment : BaseFragment() {
         observer(viewModel.popularMovies) { movieList ->
             moviePopularAdapter.submitList(movieList)
         }
-
     }
 }

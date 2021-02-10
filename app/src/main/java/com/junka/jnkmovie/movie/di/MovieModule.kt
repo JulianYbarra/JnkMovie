@@ -4,13 +4,15 @@ import com.junka.jnkmovie.movie.service.MovieService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ActivityRetainedComponent
+import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
+import javax.inject.Singleton
 
 @Module
-@InstallIn(ActivityRetainedComponent::class)
-class MovieModule {
+@InstallIn(SingletonComponent::class)
+object MovieModule {
 
     @Provides
-    fun provideCharacterService(retrofit: Retrofit): MovieService = retrofit.create(MovieService::class.java)
+    @Singleton
+    fun provideMovieService(retrofit: Retrofit): MovieService = retrofit.create(MovieService::class.java)
 }
